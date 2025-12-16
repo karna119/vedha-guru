@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Telugu Veda Guru</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            saffron: {
+              50: '#fff8f1',
+              100: '#ffefd8',
+              200: '#ffdaa6',
+              300: '#ffc172',
+              400: '#ffa13d',
+              500: '#ff820e',
+              600: '#f06406',
+              700: '#c74a06',
+              800: '#9e3a0b',
+              900: '#7f310f',
+            }
+          },
+          fontFamily: {
+            telugu: ['"Noto Sans Telugu"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    // Shim process for browser environment to prevent crashes
+    window.process = window.process || { env: { API_KEY: '' } };
+
+    // Global error handler to show startup errors on screen
+    window.onerror = function (msg, url, line, col, error) {
+      const root = document.getElementById('root');
+      if (root && (!root.innerHTML || root.innerHTML === '')) {
+        const errorDiv = document.createElement('div');
+        errorDiv.style.padding = '20px';
+        errorDiv.style.color = 'red';
+        errorDiv.style.background = '#fff0f0';
+        errorDiv.innerHTML = '<h3>Application Error</h3><pre>' + msg + '\n' + (error ? error.stack : '') + '</pre>';
+        document.body.appendChild(errorDiv);
+      }
+    };
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --gradient-1: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ff6b35 50%, #c73e1d 75%, #ff6b35 100%);
+      --gradient-2: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glow-orange: 0 0 60px rgba(255, 130, 14, 0.4);
+      --glow-gold: 0 0 40px rgba(255, 193, 114, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Telugu', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-hindi {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+    }
+
+    /* Animated gradient background */
+    .animated-gradient-bg {
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1e3a5f, #2d1b4e);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    /* Floating particles */
+    .particles-container {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, rgba(255, 193, 114, 0.8) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-light {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Glowing Om symbol */
+    .om-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255, 130, 14, 0.6));
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(255, 130, 14, 0.6));
+      }
+
+      50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 40px rgba(255, 130, 14, 0.8));
+      }
+    }
+
+    /* Card hover effects */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 130, 14, 0.2);
+    }
+
+    /* Premium button */
+    .btn-premium {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff8c42 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-premium::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-premium:hover::before {
+      left: 100%;
+    }
+
+    .btn-premium:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+    }
+
+    /* Decorative rings */
+    .decorative-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 193, 114, 0.2);
+      animation: ring-pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes ring-pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
+    }
+
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(135deg, #ffd700 0%, #ff8c42 50%, #ff6b35 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Icon container glow */
+    .icon-glow {
+      position: relative;
+    }
+
+    .icon-glow::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background: inherit;
+      border-radius: inherit;
+      filter: blur(15px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .icon-glow:hover::after {
+      opacity: 0.6;
+    }
+
+    /* Custom scrollbar */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Selection dot indicator */
+    .selection-dot {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: #ff8c42;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 140, 66, 0.8);
+    }
+
+    /* Shimmer effect */
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    /* Floating animation for decorative elements */
+    @keyframes float-slow {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+    }
+
+    .float-slow {
+      animation: float-slow 6s ease-in-out infinite;
+    }
+
+    /* Input focus glow */
+    .input-glow:focus-within {
+      box-shadow: 0 0 0 3px rgba(255, 130, 14, 0.3), 0 10px 30px rgba(255, 130, 14, 0.2);
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "@google/genai": "https://esm.sh/@google/genai@1.33.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body class="bg-saffron-50 text-saffron-900 h-screen overflow-hidden">
+  <div id="root"></div>
+  <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

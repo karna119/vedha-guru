@@ -1,0 +1,7 @@
+{
+  "name": "Telugu Veda Guru",
+  "description": "An interactive conversational AI teacher for Bhagavad Gita, Ramayana, and Vemana Satakam in Telugu using real-time voice.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
