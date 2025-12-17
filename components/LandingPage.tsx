@@ -158,38 +158,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                     </div>
 
                     {/* Mahatmas & Wisdom Visuals */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 md:mb-20">
-                        <div className="rounded-3xl overflow-hidden shadow-xl h-64 md:h-80 relative group">
-                            <img
-                                src="https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?q=80&w=800&auto=format&fit=crop"
-                                alt="Scriptural Wisdom"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
-                                <span className="text-white text-lg md:text-xl font-bold">Timeless Scriptures</span>
-                            </div>
-                        </div>
-                        <div className="rounded-3xl overflow-hidden shadow-xl h-64 md:h-80 relative group mt-0 md:-mt-8">
-                            <img
-                                src="https://images.unsplash.com/photo-1526715103498-8e6d4c5c2fc9?q=80&w=800&auto=format&fit=crop"
-                                alt="Sadhu Meditation"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
-                                <span className="text-white text-lg md:text-xl font-bold">Wisdom of Sages</span>
-                            </div>
-                        </div>
-                        <div className="rounded-3xl overflow-hidden shadow-xl h-64 md:h-80 relative group">
-                            <img
-                                src="https://images.unsplash.com/photo-1621360841012-37c88b2a3477?q=80&w=800&auto=format&fit=crop"
-                                alt="Temple Atmosphere"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
-                                <span className="text-white text-lg md:text-xl font-bold">Temple Serenity</span>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
                         {(t.whyDifferentPoints || []).map((point, idx) => (
