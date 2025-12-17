@@ -547,30 +547,30 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
           ))}
         </div>
 
-        {/* Visualizer Area */}
-        <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-saffron-200 flex-1 flex flex-col overflow-hidden mb-20 relative">
+        {/* Visualizer & Chat Area */}
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 md:p-6 shadow-xl border border-orange-100 flex-1 flex flex-col overflow-hidden mb-24 md:mb-28 relative mx-2">
           {/* Background Decorative */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
-            <svg className="w-64 h-64 text-saffron-500" viewBox="0 0 100 100" fill="currentColor">
+          <div className="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+            <svg className="w-64 h-64 text-orange-600" viewBox="0 0 100 100" fill="currentColor">
               <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="2" fill="none" />
               <path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" strokeWidth="1" />
             </svg>
           </div>
 
           {/* Chat / Transcript */}
-          <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-hide z-10">
+          <div className="flex-1 overflow-y-auto space-y-4 pr-1 scrollbar-thin scrollbar-thumb-orange-200 z-10 pb-4">
             {messages.length === 0 && (
-              <div className="text-center text-saffron-400 mt-10 italic">
+              <div className="text-center text-orange-400 mt-10 italic font-medium px-4">
                 {t.askQuestion}
               </div>
             )}
             {messages.map((msg) => (
               <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-sm ${msg.sender === 'user'
-                  ? 'bg-saffron-100 text-saffron-900 rounded-br-none'
-                  : 'bg-white border border-saffron-100 text-gray-800 rounded-bl-none'
+                <div className={`max-w-[90%] md:max-w-[80%] rounded-2xl px-5 py-4 shadow-sm border ${msg.sender === 'user'
+                  ? 'bg-orange-50 border-orange-100 text-gray-900 rounded-br-none'
+                  : 'bg-white border-gray-100 text-gray-800 rounded-bl-none shadow-md'
                   }`}>
-                  <p className="whitespace-pre-wrap leading-relaxed font-telugu text-lg">
+                  <p className="whitespace-pre-wrap leading-relaxed font-telugu text-base md:text-lg">
                     {msg.text}
                   </p>
                 </div>
@@ -584,19 +584,19 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
         <div className="fixed bottom-6 left-0 right-0 flex flex-col items-center gap-4 z-50 px-4">
 
           {/* Text Input Area - Floating above controls */}
-          <div className="w-full max-w-2xl flex items-center gap-2 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-xl border border-saffron-200 transition-all focus-within:ring-2 focus-within:ring-saffron-400">
+          <div className="w-full max-w-2xl flex items-center gap-2 bg-white p-3 rounded-full shadow-2xl border-2 border-orange-100 transition-all focus-within:border-orange-400 mb-2">
             <input
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={t.chatPlaceholder}
-              className="flex-1 bg-transparent border-none focus:ring-0 text-gray-800 placeholder-gray-400 px-4 py-2"
+              className="flex-1 bg-transparent border-none focus:ring-0 text-gray-900 placeholder-gray-500 px-2 py-1 text-base font-medium"
             />
             <button
               onClick={handleSendText}
               disabled={!inputText.trim() || status !== 'connected'}
-              className="p-2 bg-saffron-600 text-white rounded-full hover:bg-saffron-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="p-3 bg-orange-600 text-white rounded-full hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-md"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                 <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
