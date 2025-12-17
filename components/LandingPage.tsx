@@ -131,16 +131,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                             { title: t.step2Title, desc: t.step2Desc, icon: "🕉️" },
                             { title: t.step3Title, desc: t.step3Desc, icon: "💡" }
                         ].map((step, idx) => (
-                        ].map((step, idx) => (
-                        <div key={idx} className="bg-white border-2 border-orange-100 p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-row md:flex-col items-center gap-4 text-left md:text-center group">
-                            <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-orange-100 rounded-xl flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm">
-                                {step.icon}
+
+                            <div key={idx} className="bg-white border-2 border-orange-100 p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-row md:flex-col items-center gap-4 text-left md:text-center group">
+                                <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-orange-100 rounded-xl flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm">
+                                    {step.icon}
+                                </div>
+                                <div>
+                                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 leading-tight">{step.title}</h3>
+                                    <p className="text-sm text-gray-600 leading-snug">{step.desc}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 leading-tight">{step.title}</h3>
-                                <p className="text-sm text-gray-600 leading-snug">{step.desc}</p>
-                            </div>
-                        </div>
                         ))}
                     </div>
                 </div>
