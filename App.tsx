@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { LiveSession } from './components/LiveSession';
 import { LanguageSelector } from './components/LanguageSelector';
 import SecurityWrapper from './components/SecurityWrapper';
@@ -95,6 +96,7 @@ function App() {
           <h1 className="text-2xl font-bold text-white mb-4">{t.configError}</h1>
           <p className="text-white/70">{t.apiKeyMissing}</p>
         </div>
+        <Analytics />
       </div>
     );
   }
@@ -118,6 +120,7 @@ function App() {
           language={selectedLanguage}
           onEndSession={handleEnd}
         />
+        <Analytics />
       </div>
     );
   }
@@ -250,6 +253,7 @@ function App() {
           {t.microphoneNote}
         </p>
       </div>
+      <Analytics />
     </div>
   );
 }
