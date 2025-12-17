@@ -132,13 +132,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                             { title: t.step3Title, desc: t.step3Desc, icon: "💡" }
                         ].map((step, idx) => (
 
-                            <div key={idx} className="bg-white border-2 border-orange-100 p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-row md:flex-col items-center gap-4 text-left md:text-center group">
-                                <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-orange-100 rounded-xl flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm">
+                            <div key={idx} className="bg-white border border-gray-100 p-5 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group h-full">
+                                <div className="w-14 h-14 shrink-0 bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 shadow-inner mb-4">
                                     {step.icon}
                                 </div>
-                                <div>
-                                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 leading-tight">{step.title}</h3>
-                                    <p className="text-sm text-gray-600 leading-snug">{step.desc}</p>
+                                <div className="flex-1 flex flex-col justify-center">
+                                    <h3 className="text-lg font-bold text-gray-800 mb-2 leading-tight">{step.title}</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed font-medium">{step.desc}</p>
                                 </div>
                             </div>
                         ))}
