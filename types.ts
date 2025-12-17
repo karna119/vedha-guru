@@ -14,7 +14,8 @@ export enum Language {
 export enum TeachingMode {
   RAMAYANA = 'Ramayana',
   MAHABHARATA = 'Mahabharata',
-  BHAGAVATAM = 'Bhagavatam'
+  BHAGAVATAM = 'Bhagavatam',
+  DHARMA = 'Dharma'
 }
 
 export enum StudyMode {

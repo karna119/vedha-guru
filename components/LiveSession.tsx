@@ -12,9 +12,10 @@ interface LiveSessionProps {
   mode: TeachingMode;
   language: Language;
   onEndSession: () => void;
+  initialMessage?: string;
 }
 
-export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language, onEndSession }) => {
+export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language, onEndSession, initialMessage }) => {
   const [status, setStatus] = useState<'connecting' | 'connected' | 'error' | 'disconnected'>('connecting');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isMicOn, setIsMicOn] = useState(false);
@@ -210,6 +211,24 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
         break;
       case TeachingMode.BHAGAVATAM:
         instruction += `Focus STRICTLY on Shrimad Bhagavatam. If the user asks about anything else, politely decline and bring the topic back to Bhagavatam. `;
+        break;
+      case TeachingMode.DHARMA:
+        instruction += `You are "Dharmika Mitra", a wise spiritual companion.
+        Your goal is to help the user navigate their life problem using the timeless wisdom of Sanatana Dharma.
+        
+        Drawing from:
+        - Bhagavad Gita (primary source for duty/ethics)
+        - Ramayana (examples of ideal conduct)
+        - Shrimad Bhagavatam (devotion and nature of reality)
+
+        Structure your response as follows:
+        1. **Deep Listening**: Acknowledge their problem with empathy.
+        2. **Scriptural Insight**: Quote a relevant Shloka/Verse (Sanskrit + Meaning).
+        3. **Practical Example**: Share a story or example from the scriptures (e.g., "Just as Arjuna felt...", "Like Vibhishana's choice...").
+        4. **Dharmic Action**: Give concrete, actionable advice based on Dharma, Karma, Bhakti, and Jnana.
+
+        Tone: Compassionate, non-judgmental, calm, and wise. Do not sound like a generic bot. Speak like a Guru/Friend.
+        `;
         break;
       default:
         instruction += `You are ready to teach Ramayana, Mahabharata, or Bhagavatam. `;
@@ -459,12 +478,24 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
       };
 
       sessionPromiseRef.current = ai.live.connect(config);
-
     } catch (err) {
       console.error("Connection failed", err);
       setStatus('error');
     }
   }, [apiKey, mode, studyMode, language, stopAudio]); // Dependencies: added language
+
+  // Handle Initial Message from Landing Page
+  useEffect(() => {
+    if (initialMessage && status === 'connected' && messages.length === 0) {
+      // Send the message using the client's send method if available. 
+      // Since 'sendMessage' isn't directly exposed in this scope yet, we'll try to find it or emulate it.
+      // In the 'useLiveAPI' hook usage context, we often have a 'send' method.
+      // Assuming client.send or we can just send text parts.
+      if (currentSessionRef.current) {
+        currentSessionRef.current.send([{ text: initialMessage }]);
+      }
+    }
+  }, [initialMessage, status, messages.length]);
 
   useEffect(() => {
     connectToLiveAPI();

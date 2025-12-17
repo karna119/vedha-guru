@@ -4,6 +4,7 @@ import { LanguageSelector } from './components/LanguageSelector';
 import SecurityWrapper from './components/SecurityWrapper';
 import { LoginScreen } from './components/LoginScreen';
 import { AdminDashboard } from './components/AdminDashboard';
+import { LandingPage } from './components/LandingPage';
 import { TeachingMode, Language } from './types';
 import { getTranslations } from './translations';
 
@@ -82,9 +83,12 @@ function App() {
 
   const t = getTranslations(selectedLanguage);
 
+
   const apiKey = import.meta.env.VITE_API_KEY || '';
   const [user, setUser] = useState<{ name: string; phone: string } | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
+  const [initialProblem, setInitialProblem] = useState<string | undefined>(undefined);
 
   // Save language preference
   useEffect(() => {
@@ -101,6 +105,14 @@ function App() {
 
   const handleAdminBack = () => {
     setIsAdmin(false);
+  };
+
+  const handleLandingStart = (problem?: string) => {
+    setInitialProblem(problem);
+    if (problem) {
+      setSelectedMode(TeachingMode.DHARMA);
+    }
+    setShowLanding(false);
   };
 
 
@@ -135,8 +147,22 @@ function App() {
           mode={selectedMode}
           language={selectedLanguage}
           onEndSession={handleEnd}
+          initialMessage={initialProblem}
         />
       </div>
+    );
+  }
+
+  if (showLanding) {
+    return (
+      <>
+        <SecurityWrapper />
+        <LandingPage
+          onStart={handleLandingStart}
+          language={selectedLanguage}
+          setLanguage={setSelectedLanguage}
+        />
+      </>
     );
   }
 
@@ -157,6 +183,13 @@ function App() {
         <FloatingParticles />
         <DecorativeRings />
         <div className="relative z-10 w-full max-w-lg mb-8">
+          {/* Back to landing optional */}
+          <button
+            onClick={() => setShowLanding(true)}
+            className="mb-4 text-white/50 hover:text-white text-sm flex items-center gap-1"
+          >
+            ← Back
+          </button>
           <LanguageSelector
             selectedLanguage={selectedLanguage}
             onLanguageChange={setSelectedLanguage}
@@ -168,6 +201,13 @@ function App() {
   }
 
   const modeCards = [
+    {
+      mode: TeachingMode.DHARMA,
+      icon: '🕉️',
+      title: 'Dharma',
+      description: 'Guidance from Gita, Ramayana, Bhagavatam',
+      gradient: 'from-orange-500 to-amber-600'
+    },
     {
       mode: TeachingMode.RAMAYANA,
       icon: '🏹',

@@ -29,7 +29,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
               transition-all duration-300 transform
               ${isSelected
                                 ? `bg-gradient-to-r ${color} text-white shadow-lg scale-105 ring-2 ring-white/30`
-                                : 'bg-white/20 backdrop-blur-sm text-white/90 hover:bg-white/30 hover:scale-102'
+                                : 'bg-gray-100/50 backdrop-blur-sm text-gray-700 hover:bg-gray-100 hover:scale-102 border border-gray-200/50'
                             }
               hover:-translate-y-0.5 active:scale-95
             `}
