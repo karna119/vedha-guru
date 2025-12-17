@@ -85,7 +85,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
             </nav>
 
             {/* Hero Section */}
-            <header className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-16 md:pt-0">
+            <header className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-16 pb-32">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -117,79 +117,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                 </div>
             </header>
 
-            {/* Mode Selection Cards Section */}
-            <section className="py-12 relative z-20 px-4 bg-orange-50/50">
+            {/* How It Works Cards - Floating Overlap */}
+            <section className="relative z-20 px-4 -mt-32 md:-mt-48 pb-12">
                 <div className="max-w-7xl mx-auto">
-                    <h3 className="text-3xl font-bold text-center text-orange-900 mb-10">Choose Your Spiritual Path</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            {
-                                mode: TeachingMode.DHARMA,
-                                icon: '🕉️',
-                                title: 'Dharma',
-                                desc: 'Guidance from Gita & Puranas',
-                                gradient: 'from-orange-500 to-amber-600'
-                            },
-                            {
-                                mode: TeachingMode.RAMAYANA,
-                                icon: '🏹',
-                                title: t.ramayanaTitle,
-                                desc: t.ramayanaDescription,
-                                gradient: 'from-amber-500 to-orange-600'
-                            },
-                            {
-                                mode: TeachingMode.MAHABHARATA,
-                                icon: '🙏',
-                                title: t.mahabharataTitle,
-                                desc: t.mahabharataDescription,
-                                gradient: 'from-rose-500 to-pink-600'
-                            },
-                            {
-                                mode: TeachingMode.BHAGAVATAM,
-                                icon: '📜',
-                                title: t.bhagavatamTitle,
-                                desc: t.bhagavatamDescription,
-                                gradient: 'from-violet-500 to-purple-600'
-                            }
-                        ].map((card) => (
-                            <button
-                                key={card.mode}
-                                onClick={() => onStart(undefined, card.mode)}
-                                className="bg-white/90 backdrop-blur border-2 border-orange-100 p-6 rounded-3xl shadow-lg hover:shadow-2xl hover:border-orange-300 hover:-translate-y-1 transition-all duration-300 text-left flex items-center gap-4 group w-full"
-                            >
-                                <div className={`w-16 h-16 shrink-0 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform`}>
-                                    {card.icon}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors font-telugu truncate">{card.title}</h3>
-                                    <p className="text-sm text-gray-500 leading-tight line-clamp-2">{card.desc}</p>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* How It Works Section - Restored */}
-            <section className="py-24 bg-white relative z-10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12 relative">
-                        {t.howItWorksTitle}
-                        <span className="block h-1 w-16 md:w-20 bg-orange-400 mx-auto mt-4 rounded-full" />
-                    </h3>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             { title: t.step1Title, desc: t.step1Desc, icon: "🗣️" },
                             { title: t.step2Title, desc: t.step2Desc, icon: "🕉️" },
                             { title: t.step3Title, desc: t.step3Desc, icon: "💡" }
                         ].map((step, idx) => (
-                            <div key={idx} className="text-center group p-6 rounded-3xl hover:bg-orange-50/50 transition-colors border border-transparent hover:border-orange-100">
-                                <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center text-3xl md:text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                            <div key={idx} className="bg-white/95 backdrop-blur-xl border border-white/50 p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-center group">
+                                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-orange-100 to-amber-100 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 shadow-inner">
                                     {step.icon}
                                 </div>
-                                <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-3">{step.title}</h4>
-                                <p className="text-sm md:text-base text-gray-600 leading-relaxed">{step.desc}</p>
+                                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">{step.title}</h3>
+                                <p className="text-gray-600 leading-relaxed text-base md:text-lg">{step.desc}</p>
                             </div>
                         ))}
                     </div>
