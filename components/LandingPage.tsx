@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getTranslations } from '../translations';
 import { Language } from '../types';
 import { LanguageSelector } from './LanguageSelector';
@@ -13,9 +13,38 @@ interface LandingPageProps {
 export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, setLanguage }) => {
     const [problem, setProblem] = useState('');
     const t = getTranslations(language);
+    const audioRef = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        // Play Omkara sound on mount
+        const playAudio = async () => {
+            if (audioRef.current) {
+                try {
+                    audioRef.current.volume = 0.5; // Set reasonable volume
+                    await audioRef.current.play();
+
+                    // Stop after 5 seconds
+                    setTimeout(() => {
+                        if (audioRef.current) {
+                            // Fade out effect could be added here, but simple pause for now
+                            audioRef.current.pause();
+                            audioRef.current.currentTime = 0;
+                        }
+                    }, 5000);
+                } catch (err) {
+                    console.log("Audio autoplay blocked by browser policy:", err);
+                }
+            }
+        };
+
+        playAudio();
+    }, []);
 
     return (
         <div className="min-h-screen relative overflow-x-hidden bg-gradient-to-br from-orange-50 to-amber-50">
+            {/* Audio Element */}
+            <audio ref={audioRef} src="/omkara.ogg" preload="auto" />
+
             {/* Navigation/Header */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -42,6 +71,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-orange-50/90" />
                 </div>
+// ... rest of the component
 
                 <div className="relative z-10 max-w-5xl mx-auto pt-20">
                     <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
