@@ -118,8 +118,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
             </header>
 
             {/* Mode Selection Cards Section */}
-            <section className="py-16 relative z-10 -mt-20 px-4">
+            <section className="py-12 relative z-20 px-4 bg-orange-50/50">
                 <div className="max-w-7xl mx-auto">
+                    <h3 className="text-3xl font-bold text-center text-orange-900 mb-10">Choose Your Spiritual Path</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             {
@@ -154,14 +155,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                             <button
                                 key={card.mode}
                                 onClick={() => onStart(undefined, card.mode)}
-                                className="bg-white/90 backdrop-blur border border-white/20 p-6 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left flex items-center gap-4 group"
+                                className="bg-white/90 backdrop-blur border-2 border-orange-100 p-6 rounded-3xl shadow-lg hover:shadow-2xl hover:border-orange-300 hover:-translate-y-1 transition-all duration-300 text-left flex items-center gap-4 group w-full"
                             >
-                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform`}>
+                                <div className={`w-16 h-16 shrink-0 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform`}>
                                     {card.icon}
                                 </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors font-telugu">{card.title}</h3>
-                                    <p className="text-sm text-gray-500 leading-tight">{card.desc}</p>
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors font-telugu truncate">{card.title}</h3>
+                                    <p className="text-sm text-gray-500 leading-tight line-clamp-2">{card.desc}</p>
                                 </div>
                             </button>
                         ))}
