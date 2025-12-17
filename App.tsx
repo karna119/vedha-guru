@@ -3,6 +3,7 @@ import { LiveSession } from './components/LiveSession';
 import { LanguageSelector } from './components/LanguageSelector';
 import SecurityWrapper from './components/SecurityWrapper';
 import { LoginScreen } from './components/LoginScreen';
+import { AdminDashboard } from './components/AdminDashboard';
 import { TeachingMode, Language } from './types';
 import { getTranslations } from './translations';
 
@@ -83,6 +84,7 @@ function App() {
 
   const apiKey = import.meta.env.VITE_API_KEY || '';
   const [user, setUser] = useState<{ name: string; phone: string } | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Save language preference
   useEffect(() => {
@@ -91,6 +93,14 @@ function App() {
 
   const handleLogin = (name: string, phone: string) => {
     setUser({ name, phone });
+  };
+
+  const handleAdminLogin = () => {
+    setIsAdmin(true);
+  };
+
+  const handleAdminBack = () => {
+    setIsAdmin(false);
   };
 
 
@@ -130,6 +140,15 @@ function App() {
     );
   }
 
+  if (isAdmin) {
+    return (
+      <div className="min-h-screen animated-gradient-bg relative overflow-hidden">
+        <SecurityWrapper />
+        <AdminDashboard onBack={handleAdminBack} />
+      </div>
+    );
+  }
+
   // Show login screen if no user
   if (!user) {
     return (
@@ -143,7 +162,7 @@ function App() {
             onLanguageChange={setSelectedLanguage}
           />
         </div>
-        <LoginScreen onLogin={handleLogin} language={selectedLanguage} />
+        <LoginScreen onLogin={handleLogin} onAdminLogin={handleAdminLogin} language={selectedLanguage} />
       </div>
     );
   }
