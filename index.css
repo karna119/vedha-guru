@@ -2,14 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  /* Allow the document to grow, enabling window scrolling */
-  min-height: 100%;
+@layer base {
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+  }
+
+  body {
+    background-color: #fff7ed;
+    /* orange-50 */
+    font-family: 'Inter', sans-serif;
+  }
 }
 
 #root {

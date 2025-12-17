@@ -73,8 +73,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <span className="text-2xl md:text-3xl">🕉️</span>
-                        <h1 className={`text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600 ${language === Language.HINDI ? 'font-hindi' : 'font-telugu'}`}>
+                        <span className="text-xl md:text-3xl">🕉️</span>
+                        <h1 className={`text-lg md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600 truncate max-w-[200px] md:max-w-none ${language === Language.HINDI ? 'font-hindi' : 'font-telugu'}`}>
                             {t.appTitle}
                         </h1>
                     </div>
@@ -117,10 +117,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                 </div>
             </header>
 
-            {/* How It Works Cards - Floating Overlap */}
-            <section className="relative z-20 px-4 -mt-32 md:-mt-48 pb-12">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* How It Works Section - Restored */}
+            <section className="py-16 md:py-24 bg-white relative z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-xl md:text-3xl font-bold text-center text-gray-800 mb-8 md:mb-12 relative px-4">
+                        {t.howItWorksTitle}
+                        <span className="block h-1 w-16 md:w-20 bg-orange-400 mx-auto mt-4 rounded-full" />
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 px-2 md:px-0">
                         {[
                             { title: t.step1Title, desc: t.step1Desc, icon: "🗣️" },
                             { title: t.step2Title, desc: t.step2Desc, icon: "🕉️" },
