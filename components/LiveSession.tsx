@@ -21,6 +21,7 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
   const [isPlaying, setIsPlaying] = useState(false);
   const [studyMode, setStudyMode] = useState<StudyMode>(StudyMode.EXPLANATION);
   const [inputText, setInputText] = useState("");
+  const [showScript, setShowScript] = useState(false);
 
   const t = getTranslations(language);
   const currentSessionRef = useRef<any>(null);
@@ -201,17 +202,17 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
 
     // Teaching Mode Context
     switch (mode) {
-      case TeachingMode.GITA:
-        instruction += `Focus on Bhagavad Gita. `;
-        break;
       case TeachingMode.RAMAYANA:
-        instruction += `Focus on Ramayana. `;
+        instruction += `Focus STRICTLY on Ramayana. If the user asks about anything else (like coding, movies, general chat), politely decline and bring the topic back to Ramayana. `;
         break;
-      case TeachingMode.VEMANA:
-        instruction += `Focus on Vemana Satakam. `;
+      case TeachingMode.MAHABHARATA:
+        instruction += `Focus STRICTLY on Mahabharata. If the user asks about anything else, politely decline and bring the topic back to Mahabharata. `;
+        break;
+      case TeachingMode.BHAGAVATAM:
+        instruction += `Focus STRICTLY on Shrimad Bhagavatam. If the user asks about anything else, politely decline and bring the topic back to Bhagavatam. `;
         break;
       default:
-        instruction += `You are ready to teach Bhagavad Gita, Ramayana, or Vemana Satakam. `;
+        instruction += `You are ready to teach Ramayana, Mahabharata, or Bhagavatam. `;
     }
 
     // Study Mode Context
@@ -577,7 +578,7 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
             <button
               onClick={onEndSession}
               className="p-4 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition shadow-lg"
-              title="End Session"
+              title={t.endSession}
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -608,7 +609,63 @@ export const LiveSession: React.FC<LiveSessionProps> = ({ apiKey, mode, language
                 </svg>
               )}
             </button>
+
+            {/* View Script Button */}
+            <button
+              onClick={() => setShowScript(true)}
+              className="p-4 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition shadow-lg"
+              title={t.viewScript}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+            </button>
           </div>
+
+          {/* Script Modal */}
+          {showScript && (
+            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+              <div className="bg-white rounded-3xl w-full max-w-2xl h-[80vh] flex flex-col shadow-2xl animate-in zoom-in-95 duration-200">
+                <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-saffron-50 rounded-t-3xl">
+                  <h3 className="text-xl font-bold text-saffron-800 font-telugu">{t.scriptTitle}</h3>
+                  <button
+                    onClick={() => setShowScript(false)}
+                    className="p-2 hover:bg-white/50 rounded-full transition text-gray-500 hover:text-gray-800"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                  {messages.length === 0 ? (
+                    <div className="text-center text-gray-400 mt-10 italic">No script available yet.</div>
+                  ) : (
+                    messages.map((msg) => (
+                      <div key={msg.id} className="flex flex-col gap-1">
+                        <div className={`text-xs font-bold uppercase tracking-wider ${msg.sender === 'user' ? 'text-blue-600' : 'text-saffron-600'
+                          }`}>
+                          {msg.sender === 'user' ? 'You' : 'Guru'}
+                        </div>
+                        <div className={`p-3 rounded-lg text-lg leading-relaxed ${msg.sender === 'user' ? 'bg-blue-50 text-blue-900 border border-blue-100' : 'bg-saffron-50 text-saffron-900 border border-saffron-100'
+                          }`}>
+                          {msg.text}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+                <div className="p-4 border-t border-gray-100 bg-gray-50 rounded-b-3xl flex justify-end">
+                  <button
+                    onClick={() => setShowScript(false)}
+                    className="px-6 py-2 bg-saffron-600 text-white rounded-xl hover:bg-saffron-700 transition"
+                  >
+                    {t.close}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
         </div>
       </div>

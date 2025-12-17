@@ -12,10 +12,9 @@ export enum Language {
 }
 
 export enum TeachingMode {
-  GITA = 'Bhagavad Gita',
   RAMAYANA = 'Ramayana',
-  VEMANA = 'Vemana Satakam',
-  GENERAL = 'General Conversation'
+  MAHABHARATA = 'Mahabharata',
+  BHAGAVATAM = 'Bhagavatam'
 }
 
 export enum StudyMode {

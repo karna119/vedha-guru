@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LiveSession } from './components/LiveSession';
 import { LanguageSelector } from './components/LanguageSelector';
 import SecurityWrapper from './components/SecurityWrapper';
+import { LoginScreen } from './components/LoginScreen';
 import { TeachingMode, Language } from './types';
 import { getTranslations } from './translations';
 
@@ -72,19 +73,26 @@ const DecorativeRings: React.FC = () => (
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
-  const [selectedMode, setSelectedMode] = useState<TeachingMode>(TeachingMode.GENERAL);
+  const [selectedMode, setSelectedMode] = useState<TeachingMode>(TeachingMode.RAMAYANA);
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('vedaGuruLanguage');
     return (saved as Language) || Language.TELUGU;
   });
 
   const t = getTranslations(selectedLanguage);
+
   const apiKey = import.meta.env.VITE_API_KEY || '';
+  const [user, setUser] = useState<{ name: string; phone: string } | null>(null);
 
   // Save language preference
   useEffect(() => {
     localStorage.setItem('vedaGuruLanguage', selectedLanguage);
   }, [selectedLanguage]);
+
+  const handleLogin = (name: string, phone: string) => {
+    setUser({ name, phone });
+  };
+
 
   if (!apiKey) {
     return (
@@ -105,7 +113,7 @@ function App() {
 
   const handleEnd = () => {
     setHasStarted(false);
-    setSelectedMode(TeachingMode.GENERAL);
+    setSelectedMode(TeachingMode.RAMAYANA);
   };
 
   if (hasStarted) {
@@ -122,32 +130,50 @@ function App() {
     );
   }
 
+  // Show login screen if no user
+  if (!user) {
+    return (
+      <div className="min-h-screen animated-gradient-bg flex flex-col items-center justify-center p-6 relative overflow-y-auto overflow-x-hidden">
+        <SecurityWrapper />
+        <FloatingParticles />
+        <DecorativeRings />
+        <div className="relative z-10 w-full max-w-lg mb-8">
+          <LanguageSelector
+            selectedLanguage={selectedLanguage}
+            onLanguageChange={setSelectedLanguage}
+          />
+        </div>
+        <LoginScreen onLogin={handleLogin} language={selectedLanguage} />
+      </div>
+    );
+  }
+
   const modeCards = [
     {
-      mode: TeachingMode.GITA,
+      mode: TeachingMode.RAMAYANA,
       icon: '🏹',
-      title: t.gitaTitle,
-      description: t.gitaDescription,
+      title: t.ramayanaTitle,
+      description: t.ramayanaDescription,
       gradient: 'from-amber-500 to-orange-600'
     },
     {
-      mode: TeachingMode.RAMAYANA,
+      mode: TeachingMode.MAHABHARATA,
       icon: '🙏',
-      title: t.ramayanaTitle,
-      description: t.ramayanaDescription,
+      title: t.mahabharataTitle,
+      description: t.mahabharataDescription,
       gradient: 'from-rose-500 to-pink-600'
     },
     {
-      mode: TeachingMode.VEMANA,
+      mode: TeachingMode.BHAGAVATAM,
       icon: '📜',
-      title: t.vemanaTitle,
-      description: t.vemanaDescription,
+      title: t.bhagavatamTitle,
+      description: t.bhagavatamDescription,
       gradient: 'from-violet-500 to-purple-600'
     }
   ];
 
   return (
-    <div className="min-h-screen animated-gradient-bg flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen animated-gradient-bg flex flex-col items-center justify-center p-6 relative overflow-y-auto overflow-x-hidden">
       <SecurityWrapper />
       {/* Background effects */}
       <FloatingParticles />

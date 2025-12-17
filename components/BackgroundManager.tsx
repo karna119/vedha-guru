@@ -13,13 +13,16 @@ const BACKGROUNDS = {
         'ganesha', 'vinayaka', 'pillayar', 'ganapati', 'elephant', 'vighneshwara'
     ],
     krishna: [
-        'krishna', 'gita', 'bhagavad', 'govinda', 'arjuna', 'mahabharata', 'murali'
+        'krishna', 'gita', 'bhagavad', 'govinda', 'arjuna', 'mahabharata', 'murali', 'pandavas', 'kauravas', 'draupadi', 'bhishma'
     ],
     rama: [
-        'rama', 'sita', 'hanuman', 'ramayana', 'ayodhya', 'bow'
+        'rama', 'sita', 'hanuman', 'ramayana', 'ayodhya', 'bow', 'ravana', 'lakshmana'
     ],
     saraswathi: [
         'saraswathi', 'veena', 'education', 'wisdom', 'knowledge'
+    ],
+    bhagavatam: [
+        'bhagavatam', 'prahlada', 'dhruva', 'narasimha', 'vamana', 'vishnu', 'narayana'
     ],
     temple: ['default'] // Default fallback
 };
@@ -36,7 +39,9 @@ const IMAGE_PATHS = {
     rama: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/rama_art_1765881942135.png',
     temple: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/temple_art_1765881961852.png',
     // Re-using temple for saraswathi for now or fallback
-    saraswathi: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/temple_art_1765881961852.png'
+    saraswathi: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/temple_art_1765881961852.png',
+    // Use Krishna art for Bhagavatam as it's mostly Krishna based
+    bhagavatam: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/krishna_art_1765881920622.png'
 };
 
 export const BackgroundManager: React.FC<BackgroundManagerProps> = ({ messages }) => {

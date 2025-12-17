@@ -11,12 +11,22 @@ export interface Translations {
     apiKeyMissing: string;
 
     // Teaching modes
-    gitaTitle: string;
-    gitaDescription: string;
     ramayanaTitle: string;
     ramayanaDescription: string;
-    vemanaTitle: string;
-    vemanaDescription: string;
+    mahabharataTitle: string;
+    mahabharataDescription: string;
+    bhagavatamTitle: string;
+    bhagavatamDescription: string;
+
+    // Login
+    welcome: string;
+    enterDetails: string;
+    nameLabel: string;
+    phoneLabel: string;
+    startJourney: string;
+    namePlaceholder: string;
+    phonePlaceholder: string;
+    validationError: string;
 
     // Session page
     sessionTitle: {
@@ -38,30 +48,41 @@ export interface Translations {
     chatPlaceholder: string;
     askQuestion: string;
     endSession: string;
+    viewScript: string;
+    scriptTitle: string;
+    close: string;
 }
 
 const teluguTranslations: Translations = {
-    appTitle: '\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 \u0c35\u0c47\u0c26 \u0c17\u0c41\u0c30\u0c41\u0c35\u0c41',
+    appTitle: 'తెలుగు వేద గురువు',
     appSubtitle: 'Telugu Veda Guru',
-    appDescription: 'భగవద్గీత, రామాయణం మరియు వేమన శతకం ద్వారా ఆధ్యాత్మిక జ్ఞానం నేర్చుకోండి.',
+    appDescription: 'రామాయణం, మహాభారతం మరియు భాగవతం ద్వారా ఆధ్యాత్మిక జ్ఞానం నేర్చుకోండి.',
     selectLanguage: 'భాష ఎంచుకోండి',
     startLearning: 'నేర్చుకోవడం ప్రారంభించండి',
     microphoneNote: 'మైక్రోఫోన్ అనుమతి అవసరం • Gemini ద్వారా',
     configError: 'కాన్ఫిగరేషన్ లోపం',
     apiKeyMissing: 'API కీ కనుగొనబడలేదు. దయచేసి .env.local లో VITE_API_KEY సెట్ చేయండి',
 
-    gitaTitle: 'భగవద్గీత',
-    gitaDescription: 'శ్రీకృష్ణుని జ్ఞానం',
     ramayanaTitle: 'రామాయణం',
     ramayanaDescription: 'శ్రీరాముని గాథ',
-    vemanaTitle: 'వేమన శతకం',
-    vemanaDescription: 'జ్ఞాన పద్యాలు',
+    mahabharataTitle: 'మహాభారతం',
+    mahabharataDescription: 'పాండవుల చరిత్ర',
+    bhagavatamTitle: 'శ్రీమద్భాగవతం',
+    bhagavatamDescription: 'శ్రీకృష్ణ లీలలు',
+
+    welcome: 'స్వాగతం',
+    enterDetails: 'మీ వివరాలను నమోదు చేయండి',
+    nameLabel: 'పేరు',
+    phoneLabel: 'ఫోన్ నంబర్',
+    startJourney: 'ప్రారంభించండి',
+    namePlaceholder: 'మీ పేరు',
+    phonePlaceholder: '10 అంకెల నంబర్',
+    validationError: 'దయచేసి సరైన వివరాలను నమోదు చేయండి',
 
     sessionTitle: {
-        [TeachingMode.GITA]: 'శ్రీ మద్భగవద్గీత',
         [TeachingMode.RAMAYANA]: 'శ్రీ రామాయణం',
-        [TeachingMode.VEMANA]: 'వేమన శతకం',
-        [TeachingMode.GENERAL]: 'ఆధ్యాత్మిక చర్చ'
+        [TeachingMode.MAHABHARATA]: 'శ్రీ మహాభారతం',
+        [TeachingMode.BHAGAVATAM]: 'శ్రీమద్భాగవతం'
     },
     statusConnecting: 'గురువుతో కనెక్ట్ అవుతోంది...',
     statusSpeaking: 'గురువు మాట్లాడుతున్నారు...',
@@ -76,31 +97,42 @@ const teluguTranslations: Translations = {
 
     chatPlaceholder: 'గురువుకు సందేశం టైప్ చేయండి...',
     askQuestion: 'ప్రశ్న అడగండి లేదా "నమస్కారం" అని చెప్పండి...',
-    endSession: 'సెషన్ ముగించండి'
+    endSession: 'సెషన్ ముగించండి',
+    viewScript: 'స్క్రిప్ట్ చూడండి',
+    scriptTitle: 'సంభాషణ స్క్రిప్ట్',
+    close: 'మూసివేయు'
 };
 
 const hindiTranslations: Translations = {
-    appTitle: '\u0935\u0947\u0926 \u0917\u0941\u0930\u0941',
+    appTitle: 'वेद गुरु',
     appSubtitle: 'Veda Guru',
-    appDescription: 'भगवद्गीता, रामायण और वेमना शतकम् के माध्यम से आध्यात्मिक ज्ञान सीखें।',
+    appDescription: 'रामायण, महाभारत और भागवतम् के माध्यम से आध्यात्मिक ज्ञान सीखें।',
     selectLanguage: 'भाषा चुनें',
     startLearning: 'सीखना शुरू करें',
     microphoneNote: 'माइक्रोफ़ोन की अनुमति आवश्यक • Gemini द्वारा',
     configError: 'कॉन्फ़िगरेशन त्रुटि',
     apiKeyMissing: 'API कुंजी नहीं मिली। कृपया .env.local में VITE_API_KEY सेट करें',
 
-    gitaTitle: 'भगवद्गीता',
-    gitaDescription: 'श्री कृष्ण का ज्ञान',
     ramayanaTitle: 'रामायण',
     ramayanaDescription: 'श्री राम की गाथा',
-    vemanaTitle: 'वेमना शतकम्',
-    vemanaDescription: 'ज्ञान के पद्य',
+    mahabharataTitle: 'महाभारत',
+    mahabharataDescription: 'पांडवों का इतिहास',
+    bhagavatamTitle: 'श्रीमद्भागवतम्',
+    bhagavatamDescription: 'श्री कृष्ण की लीलाएँ',
+
+    welcome: 'स्वागत',
+    enterDetails: 'अपना विवरण दर्ज करें',
+    nameLabel: 'नाम',
+    phoneLabel: 'फ़ोन नंबर',
+    startJourney: 'शुरू करें',
+    namePlaceholder: 'आपका नाम',
+    phonePlaceholder: '10 अंकों का नंबर',
+    validationError: 'कृपया सही विवरण दर्ज करें',
 
     sessionTitle: {
-        [TeachingMode.GITA]: 'श्रीमद्भगवद्गीता',
         [TeachingMode.RAMAYANA]: 'श्री रामायण',
-        [TeachingMode.VEMANA]: 'वेमना शतकम्',
-        [TeachingMode.GENERAL]: 'आध्यात्मिक चर्चा'
+        [TeachingMode.MAHABHARATA]: 'श्री महाभारत',
+        [TeachingMode.BHAGAVATAM]: 'श्रीमद्भागवतम्'
     },
     statusConnecting: 'गुरु से जुड़ रहे हैं...',
     statusSpeaking: 'गुरु बोल रहे हैं...',
@@ -115,31 +147,42 @@ const hindiTranslations: Translations = {
 
     chatPlaceholder: 'गुरु को संदेश टाइप करें...',
     askQuestion: 'प्रश्न पूछें या "नमस्कार" कहें...',
-    endSession: 'सत्र समाप्त करें'
+    endSession: 'सत्र समाप्त करें',
+    viewScript: 'लिपि देखें',
+    scriptTitle: 'बातचीत की लिपि',
+    close: 'बंद करें'
 };
 
 const englishTranslations: Translations = {
     appTitle: 'Veda Guru',
     appSubtitle: 'Your Spiritual Guide',
-    appDescription: 'Learn spiritual wisdom through Bhagavad Gita, Ramayana, and Vemana Satakam.',
+    appDescription: 'Learn spiritual wisdom through Ramayana, Mahabharata, and Bhagavatam.',
     selectLanguage: 'Select Language',
     startLearning: 'Start Learning',
     microphoneNote: 'Requires Microphone Access • Powered by Gemini',
     configError: 'Configuration Error',
     apiKeyMissing: 'API Key not found. Please ensure VITE_API_KEY is set in .env.local',
 
-    gitaTitle: 'Bhagavad Gita',
-    gitaDescription: 'Wisdom of Lord Krishna',
     ramayanaTitle: 'Ramayana',
     ramayanaDescription: 'The Epic of Rama',
-    vemanaTitle: 'Vemana Satakam',
-    vemanaDescription: 'Poems of Wisdom',
+    mahabharataTitle: 'Mahabharata',
+    mahabharataDescription: 'The Great Epic',
+    bhagavatamTitle: 'Bhagavatam',
+    bhagavatamDescription: 'Leelas of Krishna',
+
+    welcome: 'Welcome',
+    enterDetails: 'Enter your details',
+    nameLabel: 'Name',
+    phoneLabel: 'Phone Number',
+    startJourney: 'Start Journey',
+    namePlaceholder: 'Your Name',
+    phonePlaceholder: '10 digit number',
+    validationError: 'Please enter valid details',
 
     sessionTitle: {
-        [TeachingMode.GITA]: 'Shrimad Bhagavad Gita',
         [TeachingMode.RAMAYANA]: 'Shri Ramayana',
-        [TeachingMode.VEMANA]: 'Vemana Satakam',
-        [TeachingMode.GENERAL]: 'Spiritual Discussion'
+        [TeachingMode.MAHABHARATA]: 'Shri Mahabharata',
+        [TeachingMode.BHAGAVATAM]: 'Shrimad Bhagavatam'
     },
     statusConnecting: 'Connecting to Guru...',
     statusSpeaking: 'Guru is speaking...',
@@ -154,7 +197,10 @@ const englishTranslations: Translations = {
 
     chatPlaceholder: 'Type a message to Guru...',
     askQuestion: 'Ask a question or say "Namaskaram" to start...',
-    endSession: 'End Session'
+    endSession: 'End Session',
+    viewScript: 'View Script',
+    scriptTitle: 'Conversation Script',
+    close: 'Close'
 };
 
 export const translations: Record<Language, Translations> = {
