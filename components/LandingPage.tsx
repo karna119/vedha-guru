@@ -41,9 +41,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
     }, []);
 
     return (
-        <div className="min-h-screen relative overflow-x-hidden bg-gradient-to-br from-orange-50 to-amber-50">
+        <div className="min-h-screen relative overflow-x-hidden bg-gradient-to-br from-orange-50 to-amber-50" onClick={() => {
+            // Try to play on first interaction if not playing
+            if (audioRef.current && audioRef.current.paused) {
+                audioRef.current.play().catch(e => console.log("Still blocked", e));
+            }
+        }}>
             {/* Audio Element */}
             <audio ref={audioRef} src="/omkara.ogg" preload="auto" />
+
+            {/* Manual Audio Control */}
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    if (audioRef.current) {
+                        if (audioRef.current.paused) {
+                            audioRef.current.play();
+                        } else {
+                            audioRef.current.pause();
+                        }
+                    }
+                }}
+                className="fixed bottom-4 right-4 z-50 bg-white/80 backdrop-blur p-3 rounded-full shadow-lg border border-orange-200 hover:scale-110 transition-transform"
+                title="Play/Pause Chant"
+            >
+                🔊
+            </button>
 
             {/* Navigation/Header */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100">
@@ -71,7 +94,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-orange-50/90" />
                 </div>
-// ... rest of the component
+
 
                 <div className="relative z-10 max-w-5xl mx-auto pt-20">
                     <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
