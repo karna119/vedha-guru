@@ -234,138 +234,85 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen animated-gradient-bg flex flex-col items-center justify-center p-6 relative overflow-y-auto overflow-x-hidden">
+  // Mode Selection Screen (The "Middle Page")
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 flex flex-col items-center p-4 md:p-6 overflow-y-auto">
       <SecurityWrapper />
-      {/* Background effects */}
-      <FloatingParticles />
-      <DecorativeRings />
 
-      {/* Main content */}
-      <div className="relative z-10 w-full max-w-lg">
+      <div className="w-full max-w-lg my-auto relative z-10">
+
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <div className="mb-4 inline-block">
+            <span className="text-6xl filter drop-shadow-md animate-pulse-slow">🕉️</span>
+          </div>
+          <h1 className={`text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600 mb-3 ${selectedLanguage === Language.HINDI ? 'font-hindi' : 'font-telugu'}`}>
+            {t.appTitle}
+          </h1>
+          <p className="text-gray-600 text-lg font-medium leading-relaxed px-4">
+            {t.appSubtitle}
+          </p>
+        </div>
 
         {/* Language Selector */}
-        <div className="mb-8">
+        <div className="mb-8 flex justify-center">
           <LanguageSelector
             selectedLanguage={selectedLanguage}
             onLanguageChange={setSelectedLanguage}
           />
         </div>
-        <div className="flex flex-col h-screen bg-gray-50 relative overflow-hidden">
-          {/* Unified Background Image */}
-          <div className="absolute inset-0 z-0">
-            <img
-              src="https://images.unsplash.com/photo-1542858888-eaee913db581?q=80&w=1920&auto=format&fit=crop"
-              alt="Unified Spiritual Background"
-              className="w-full h-full object-cover opacity-10"
-            />
-          </div>
 
-          {/* Header */}
-          <header className="bg-white/90 backdrop-blur-sm border-b border-orange-100 px-6 py-4 flex items-center justify-between shadow-sm relative z-10">
-            <SecurityWrapper />
-            {/* Background effects */}
-            <FloatingParticles />
-            <DecorativeRings />
-
-            {/* Main content */}
-            <div className="relative z-10 w-full max-w-lg">
-
-              {/* Language Selector */}
-              <div className="mb-8">
-                <LanguageSelector
-                  selectedLanguage={selectedLanguage}
-                  onLanguageChange={setSelectedLanguage}
-                />
+        {/* Mode Selection Cards */}
+        <div className="space-y-4 mb-8">
+          <p className="text-gray-500 text-sm font-bold uppercase tracking-wider ml-2 mb-2">Select Your Path</p>
+          {modeCards.map(({ mode, icon, title, description, gradient }) => (
+            <button
+              key={mode}
+              onClick={() => setSelectedMode(mode)}
+              className={`w-full bg-white border-2 rounded-2xl p-4 flex items-center gap-4 group transition-all duration-200 shadow-sm hover:shadow-md
+                    ${selectedMode === mode
+                  ? 'border-orange-500 ring-4 ring-orange-500/10 scale-[1.02]'
+                  : 'border-white hover:border-orange-200'
+                }`}
+            >
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-2xl text-white shadow-md group-hover:scale-110 transition-transform`}>
+                {icon}
               </div>
 
-              {/* Header with Om symbol */}
-              <div className="text-center mb-10">
-                <div className="relative inline-block mb-6">
-                  {/* Glowing Om */}
-                  <div className="om-glow w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 flex items-center justify-center shadow-2xl cursor-pointer">
-                    <span className="text-5xl text-white drop-shadow-lg">🕉️</span>
-                  </div>
-                  {/* Outer ring */}
-                  <div className="absolute inset-0 -m-3 rounded-full border-2 border-amber-400/30 animate-ping" style={{ animationDuration: '3s' }} />
-                </div>
-
-                <h1 className={`text-5xl font-bold text-gradient tracking-tight mb-2 ${selectedLanguage === Language.HINDI ? 'font-hindi' : 'font-telugu'
-                  }`}>
-                  {t.appTitle}
-                </h1>
-                <p className="text-xl text-white/80 font-medium mb-3">
-                  {t.appSubtitle}
-                </p>
-                <p className="text-white/60 text-sm max-w-sm mx-auto leading-relaxed">
-                  {t.appDescription}
+              <div className="text-left flex-1">
+                <h3 className={`font-bold text-gray-800 text-lg group-hover:text-orange-600 transition-colors ${selectedLanguage === Language.HINDI ? 'font-hindi' : 'font-telugu'}`}>
+                  {title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-tight">
+                  {description}
                 </p>
               </div>
 
-              {/* Teaching Mode Cards */}
-              <div className="space-y-4 mb-8">
-                {modeCards.map(({ mode, icon, title, description, gradient }) => (
-                  <button
-                    key={mode}
-                    onClick={() => setSelectedMode(mode)}
-                    className={`w-full glass card-hover rounded-2xl p-5 flex items-center gap-5 group relative overflow-hidden
-                ${selectedMode === mode
-                        ? 'ring-2 ring-amber-400/50 bg-white/15'
-                        : 'hover:bg-white/10'
-                      }`}
-                  >
-                    {/* Selection indicator */}
-                    {selectedMode === mode && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-orange-500" />
-                    )}
-
-                    {/* Icon */}
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      {icon}
-                    </div>
-
-                    {/* Text */}
-                    <div className="text-left flex-1">
-                      <h3 className="font-bold text-white text-lg font-telugu group-hover:text-amber-200 transition-colors">
-                        {title}
-                      </h3>
-                      <p className="text-white/60 text-sm">
-                        {description}
-                      </p>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${selectedMode === mode
-                      ? 'bg-amber-500 text-white'
-                      : 'bg-white/10 text-white/50 group-hover:bg-white/20 group-hover:text-white'
-                      }`}>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                      </svg>
-                    </div>
-                  </button>
-                ))}
+              <div className={`w-6 h-6 rounded-full border flex items-center justify-center ${selectedMode === mode ? 'bg-orange-500 border-orange-500 text-white' : 'border-gray-200 text-transparent'}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clipRule="evenodd" />
+                </svg>
               </div>
-
-              {/* Start Button */}
-              <button
-                onClick={handleStart}
-                className="w-full btn-premium py-5 text-white rounded-2xl font-bold text-lg shadow-2xl active:scale-95 transition-transform"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <span>{t.startLearning}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </span>
-              </button>
-
-              {/* Footer note */}
-              <p className="text-center text-white/40 text-xs mt-6">
-                {t.microphoneNote}
-              </p>
-            </div>
-          </header>
+            </button>
+          ))}
         </div>
+
+        {/* Start Button */}
+        <button
+          onClick={handleStart}
+          className="w-full py-5 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 relative overflow-hidden group"
+        >
+          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          <span>{t.startLearning}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </button>
+
+        <p className="text-center text-gray-400 text-xs mt-6 px-8 leading-relaxed">
+          {t.microphoneNote}
+        </p>
+
       </div>
     </div>
   );
