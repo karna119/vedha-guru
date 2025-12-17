@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useAnimate } from 'framer-motion';
+
 
 // Importing local assets (assuming they are in public folder or imported)
 // For now, we will use the absolute paths provided by the generate_image tool, 
@@ -34,19 +34,16 @@ interface BackgroundManagerProps {
 // We will use the absolute paths for the generated artifacts directly effectively as "source"
 // In a real prod app, these would be in /public.
 const IMAGE_PATHS = {
-    ganesha: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/ganesha_art_1765881891470.png',
-    krishna: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/krishna_art_1765881920622.png',
-    rama: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/rama_art_1765881942135.png',
-    temple: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/temple_art_1765881961852.png',
-    // Re-using temple for saraswathi for now or fallback
-    saraswathi: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/temple_art_1765881961852.png',
-    // Use Krishna art for Bhagavatam as it's mostly Krishna based
-    bhagavatam: 'C:/Users/swathikaran/.gemini/antigravity/brain/bd9c5fa0-d2c9-414a-9ad0-7a76fb67f180/krishna_art_1765881920622.png'
+    ganesha: 'https://images.unsplash.com/photo-1628108425206-e04f056d688b?q=80&w=1920&auto=format&fit=crop',
+    krishna: 'https://images.unsplash.com/photo-1534008745585-618420e7df65?q=80&w=1920&auto=format&fit=crop',
+    rama: 'https://images.unsplash.com/photo-1624538904797-152e93d8b244?q=80&w=1920&auto=format&fit=crop',
+    temple: 'https://images.unsplash.com/photo-1621360841012-37c88b2a3477?q=80&w=1920&auto=format&fit=crop',
+    saraswathi: 'https://images.unsplash.com/photo-1582236319808-7243b8113426?q=80&w=1920&auto=format&fit=crop',
+    bhagavatam: 'https://images.unsplash.com/photo-1566453916963-3d01f9e2b60a?q=80&w=1920&auto=format&fit=crop'
 };
 
 export const BackgroundManager: React.FC<BackgroundManagerProps> = ({ messages }) => {
     const [currentBg, setCurrentBg] = useState<string>('temple');
-    const [scope, animate] = useAnimate();
 
     useEffect(() => {
         if (!messages || messages.length === 0) return;
