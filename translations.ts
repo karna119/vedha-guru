@@ -77,7 +77,7 @@ export interface Translations {
 }
 
 const teluguTranslations: Translations = {
-    appTitle: 'Dharmika Mitra (ధార్మిక మిత్ర)',
+    appTitle: 'ధార్మిక మిత్ర',
     appSubtitle: 'Guidance from Gita, Ramayana & Bhagavatam',
     appDescription: 'Navigate life\'s challenges with timeless wisdom.',
 
@@ -155,7 +155,7 @@ const teluguTranslations: Translations = {
 };
 
 const hindiTranslations: Translations = {
-    appTitle: 'Dharmika Mitra',
+    appTitle: 'धार्मिक मित्र',
     appSubtitle: 'Guidance from Gita, Ramayana & Bhagavatam',
     appDescription: 'Navigate life\'s challenges with timeless wisdom.',
 
