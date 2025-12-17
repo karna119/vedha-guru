@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LiveSession } from './components/LiveSession';
 import { LanguageSelector } from './components/LanguageSelector';
+import SecurityWrapper from './components/SecurityWrapper';
 import { TeachingMode, Language } from './types';
 import { getTranslations } from './translations';
 
@@ -88,6 +89,7 @@ function App() {
   if (!apiKey) {
     return (
       <div className="min-h-screen animated-gradient-bg flex items-center justify-center p-8">
+        <SecurityWrapper />
         <div className="glass rounded-3xl p-8 text-center max-w-md">
           <div className="text-5xl mb-4">⚠️</div>
           <h1 className="text-2xl font-bold text-white mb-4">{t.configError}</h1>
@@ -109,6 +111,7 @@ function App() {
   if (hasStarted) {
     return (
       <div className="h-screen bg-gradient-to-br from-saffron-50 to-saffron-100">
+        <SecurityWrapper />
         <LiveSession
           apiKey={apiKey}
           mode={selectedMode}
@@ -145,6 +148,7 @@ function App() {
 
   return (
     <div className="min-h-screen animated-gradient-bg flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      <SecurityWrapper />
       {/* Background effects */}
       <FloatingParticles />
       <DecorativeRings />

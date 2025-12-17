@@ -41,7 +41,7 @@ export interface Translations {
 }
 
 const teluguTranslations: Translations = {
-    appTitle: 'తెలుగు వేద గురువు',
+    appTitle: '\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 \u0c35\u0c47\u0c26 \u0c17\u0c41\u0c30\u0c41\u0c35\u0c41',
     appSubtitle: 'Telugu Veda Guru',
     appDescription: 'భగవద్గీత, రామాయణం మరియు వేమన శతకం ద్వారా ఆధ్యాత్మిక జ్ఞానం నేర్చుకోండి.',
     selectLanguage: 'భాష ఎంచుకోండి',
