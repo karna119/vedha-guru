@@ -233,7 +233,6 @@ function App() {
     }
   ];
 
-  return (
   // Mode Selection Screen (The "Middle Page")
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 flex flex-col items-center p-4 md:p-6 overflow-y-auto">
