@@ -280,10 +280,10 @@ function App() {
               </div>
 
               <div className="text-left flex-1">
-                <h3 className={`font-bold text-gray-800 text-lg group-hover:text-orange-600 transition-colors ${selectedLanguage === Language.HINDI ? 'font-hindi' : 'font-telugu'}`}>
+                <h3 className={`font-bold text-black text-lg group-hover:text-orange-700 transition-colors ${selectedLanguage === Language.HINDI ? 'font-hindi' : 'font-telugu'}`}>
                   {title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-tight">
+                <p className="text-gray-900 text-sm font-medium leading-tight opacity-90">
                   {description}
                 </p>
               </div>
