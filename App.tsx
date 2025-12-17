@@ -107,9 +107,11 @@ function App() {
     setIsAdmin(false);
   };
 
-  const handleLandingStart = (problem?: string) => {
+  const handleLandingStart = (problem?: string, mode?: TeachingMode) => {
     setInitialProblem(problem);
-    if (problem) {
+    if (mode) {
+      setSelectedMode(mode);
+    } else if (problem) {
       setSelectedMode(TeachingMode.DHARMA);
     }
     setShowLanding(false);

@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { getTranslations } from '../translations';
-import { Language } from '../types';
+import { Language, TeachingMode } from '../types';
 import { LanguageSelector } from './LanguageSelector';
 
 interface LandingPageProps {
-    onStart: (problem?: string) => void;
+    onStart: (problem?: string, mode?: TeachingMode) => void;
     language: Language;
     setLanguage: (lang: Language) => void;
 }
@@ -117,8 +117,60 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, language, set
                 </div>
             </header>
 
-            {/* How It Works Section */}
-            <section className="py-16 md:py-24 bg-white relative z-10">
+            {/* Mode Selection Cards Section */}
+            <section className="py-16 relative z-10 -mt-20 px-4">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                mode: TeachingMode.DHARMA,
+                                icon: '🕉️',
+                                title: 'Dharma',
+                                desc: 'Guidance from Gita & Puranas',
+                                gradient: 'from-orange-500 to-amber-600'
+                            },
+                            {
+                                mode: TeachingMode.RAMAYANA,
+                                icon: '🏹',
+                                title: t.ramayanaTitle,
+                                desc: t.ramayanaDescription,
+                                gradient: 'from-amber-500 to-orange-600'
+                            },
+                            {
+                                mode: TeachingMode.MAHABHARATA,
+                                icon: '🙏',
+                                title: t.mahabharataTitle,
+                                desc: t.mahabharataDescription,
+                                gradient: 'from-rose-500 to-pink-600'
+                            },
+                            {
+                                mode: TeachingMode.BHAGAVATAM,
+                                icon: '📜',
+                                title: t.bhagavatamTitle,
+                                desc: t.bhagavatamDescription,
+                                gradient: 'from-violet-500 to-purple-600'
+                            }
+                        ].map((card) => (
+                            <button
+                                key={card.mode}
+                                onClick={() => onStart(undefined, card.mode)}
+                                className="bg-white/90 backdrop-blur border border-white/20 p-6 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left flex items-center gap-4 group"
+                            >
+                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform`}>
+                                    {card.icon}
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors font-telugu">{card.title}</h3>
+                                    <p className="text-sm text-gray-500 leading-tight">{card.desc}</p>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* How It Works Section - Restored */}
+            <section className="py-24 bg-white relative z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12 relative">
                         {t.howItWorksTitle}
